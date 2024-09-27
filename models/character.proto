@@ -61,8 +61,8 @@ message CharacterGetResponse {
     int32 class = 5;
     int32 sub_class = 6;
     int32 map = 7;
-    int32 position_x = 8;
-    int32 position_y = 9;
+    float position_x = 8;
+    float position_y = 9;
     float direction = 10;
     int32 authority_code = 11;
 
