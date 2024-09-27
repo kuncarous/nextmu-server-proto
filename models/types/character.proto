@@ -1,0 +1,145 @@
+syntax = "proto3";
+
+package nextmu.types.character.v1;
+
+/*
+    Simplified View Info
+*/
+message CharacterViewInfo {
+    int32 slot = 1;
+    int32 type = 2;
+    int32 index = 3;
+    int32 level = 4;
+    int32 rank = 5;
+}
+
+message MountViewInfo {
+    int32 type = 1;
+    int32 level = 2;
+    optional bytes skin = 3;
+}
+
+message PetViewInfo {
+    int32 type = 1;
+    int32 level = 2;
+    optional bytes skin = 3;
+}
+
+message SkinLinkInfo {
+    int32 slot = 1;
+    bytes skin_id = 2;
+}
+
+message CharacterSmallInfo {
+    bytes character_id = 1;
+
+    string name = 2;
+    int32 level = 3;
+    int32 class = 4;
+    int32 sub_class = 5;
+    int32 authority_code = 6;
+
+    repeated CharacterViewInfo charset = 7;
+    MountViewInfo mount = 8;
+    PetViewInfo pet = 9;
+    repeated SkinLinkInfo skins = 10;
+}
+
+message SkinInfo {
+    bytes id = 1;
+    int32 type = 2;
+    int32 index = 3;
+}
+
+message ItemOptionData
+{
+    int32 type = 1;
+    int32 rank = 2;
+}
+
+message ItemData {
+    bytes id = 1;
+    bytes owner_id = 2;
+
+    int32 inventory_type = 3;
+    int32 inventory_index = 4;
+    int32 item_type = 5;
+    int32 item_index = 6;
+
+    int32 block_flags = 7;
+
+    int32 level = 8;
+    int64 experience = 9;
+
+    int32 quantity = 10;
+    int32 physical_damage_min = 11;
+    int32 physical_damage_max = 12;
+    int32 magical_damage_min = 13;
+    int32 magical_damage_max = 14;
+    int32 physical_defense = 15;
+    int32 magical_defense = 16;
+    int32 block_chance = 17;
+    int32 block_damage = 18;
+    int32 attack_speed = 19;
+    int32 move_speed = 20;
+    repeated ItemOptionData options = 21;
+}
+
+message MountData {
+    bytes id = 1;
+    bytes owner_id = 2;
+    
+    int32 inventory_type = 3;
+    int32 inventory_index = 4;
+    int32 mount_type = 5;
+
+    int32 block_flags = 6;
+
+    int32 level = 7;
+    int64 experience = 8;
+
+    int32 physical_damage = 9;
+    int32 magical_damage = 10;
+    int32 physical_defense = 11;
+    int32 magical_defense = 12;
+    int32 attack_speed = 13;
+    int32 move_speed = 14;
+    repeated ItemOptionData options = 15;
+
+    bytes skin_id = 16;
+}
+
+message PetData {
+    bytes id = 1;
+    bytes owner_id = 2;
+    
+    int32 inventory_type = 3;
+    int32 inventory_index = 4;
+    int32 pet_type = 5;
+
+    int32 block_flags = 6;
+
+    int32 level = 7;
+    int64 experience = 8;
+
+    int32 physical_damage = 9;
+    int32 magical_damage = 10;
+    int32 physical_defense = 11;
+    int32 magical_defense = 12;
+    int32 attack_speed = 13;
+    int32 move_speed = 14;
+    repeated ItemOptionData options = 15;
+
+    bytes skin_id = 16;
+}
+
+message ItemInventoryData {
+    repeated ItemData equipment = 1;
+    repeated ItemData consumables = 2;
+    repeated ItemData quests = 3;
+    repeated ItemData pets = 4;
+    repeated ItemData jewels = 5;
+    repeated ItemData others = 6;
+    repeated MountData mounts = 7;
+    repeated PetData passive_pets = 8;
+};

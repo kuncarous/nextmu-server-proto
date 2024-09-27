@@ -1,0 +1,118 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "types/character.proto";
+package nextmu.character.v1;
+
+service Character {
+    rpc List(CharacterListRequest) returns (CharacterListResponse);
+    rpc Create(CharacterCreateRequest) returns (CharacterCreateResponse);
+    rpc Delete(CharacterDeleteRequest) returns (google.protobuf.Empty);
+    rpc Get(CharacterGetRequest) returns (CharacterGetResponse);
+    rpc Save(CharacterSaveRequest) returns (google.protobuf.Empty);
+}
+
+/*
+    Requests and Responses
+*/
+message CharacterListRequest {
+    bytes account_id = 1;
+}
+
+message CharacterListResponse {
+    repeated nextmu.types.character.v1.CharacterSmallInfo characters = 1;
+    repeated nextmu.types.character.v1.SkinInfo skins = 2;
+}
+
+message CharacterCreateRequest {
+    bytes account_id = 1;
+    int32 class = 2;
+    string name = 3;
+}
+
+message CharacterCreateResponse {
+    enum ResponseCode {
+        SUCCESS = 0;
+        NAME_EXISTS = 1;
+        INVALID_CLASS = 2;
+    }
+
+    ResponseCode response_code = 1;
+    optional nextmu.types.character.v1.CharacterSmallInfo character = 2;
+}
+
+message CharacterDeleteRequest {
+    bytes account_id = 1;
+    bytes character_id = 2;
+}
+
+message CharacterGetRequest {
+    bytes account_id = 1;
+    bytes character_id = 2;
+}
+
+message CharacterGetResponse {
+    bytes character_id = 1;
+    int64 gold = 2;
+    int64 event_coins = 3;
+
+    string character_name = 4;
+
+    int32 class = 5;
+    int32 sub_class = 6;
+    int32 map = 7;
+    int32 position_x = 8;
+    int32 position_y = 9;
+    float direction = 10;
+    int32 authority_code = 11;
+
+    int32 available_points = 12;
+    int32 strength = 13;
+    int32 dexterity = 14;
+    int32 vitality = 15;
+    int32 energy = 16;
+
+    float life = 17;
+    float mana = 18;
+    float stamina = 19;
+
+    int32 level = 20;
+    int64 experience = 21;
+
+    repeated int32 magics = 22;
+    repeated nextmu.types.character.v1.ItemData equipment = 23;
+    nextmu.types.character.v1.MountData mount = 24;
+    nextmu.types.character.v1.PetData pet = 25;
+    nextmu.types.character.v1.ItemInventoryData inventory = 26;
+    nextmu.types.character.v1.ItemInventoryData storage = 27;
+    repeated nextmu.types.character.v1.SkinLinkInfo skins = 28;
+}
+
+message CharacterSaveRequest {
+    bytes account_id = 1;
+    bytes character_id = 2;
+    int64 gold = 3;
+    int64 event_coins = 4;
+
+    int32 class = 5;
+    int32 sub_class = 6;
+    int32 map = 7;
+    int32 position_x = 8;
+    int32 position_y = 9;
+    float direction = 10;
+
+    int32 available_points = 11;
+    int32 strength = 12;
+    int32 dexterity = 13;
+    int32 vitality = 14;
+    int32 energy = 15;
+
+    float life = 16;
+    float mana = 17;
+    float stamina = 18;
+
+    int32 level = 19;
+    int64 experience = 20;
+    
+    repeated int32 magics = 21;
+}

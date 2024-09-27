@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+package nextmu.session.v1;
+
+service Session {
+    rpc Validate(SessionValidateRequest) returns (SessionValidateResponse);
+    rpc Release(SessionReleaseRequest) returns (google.protobuf.Empty);
+    rpc Renew(SessionRenewRequest) returns (SessionRenewResponse);
+}
+
+message SessionValidateRequest {
+    bytes account_id = 1;
+    bytes session_id = 2;
+    bytes server_id = 3;
+}
+
+message SessionValidateResponse {
+    enum ResponseCode {
+        SUCCESS = 0;
+        INVALID_SESSION = 1;
+        ACCOUNT_IN_USE = 2;
+    }
+
+    ResponseCode response_code = 1;
+    optional bytes account_id = 2;
+    optional bytes session_id = 3;
+    optional string account_name = 4;
+    optional int64 expire_at = 5;
+}
+
+message SessionReleaseRequest {
+    bytes account_id = 1;
+    bytes session_id = 2;
+}
+
+message SessionRenewRequest {
+    bytes account_id = 1;
+    bytes session_id = 2;
+}
+
+message SessionRenewResponse {
+    enum ResponseCode {
+        SUCCESS = 0;
+        FAILED = 1;
+    }
+    
+    ResponseCode response_code = 1;
+    optional int64 expire_at = 2;
+}

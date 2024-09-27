@@ -1,0 +1,24 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+import "types/character.proto";
+package nextmu.item.v1;
+
+service Item {
+    rpc Save(ItemSaveRequest) returns (google.protobuf.Empty);
+    rpc Delete(ItemDeleteRequest) returns (google.protobuf.Empty);
+}
+
+message ItemSaveRequest {
+    repeated nextmu.types.character.v1.ItemData items = 1;
+    repeated nextmu.types.character.v1.MountData mounts = 2;
+    repeated nextmu.types.character.v1.PetData pets = 3;
+}
+
+message ItemDeleteRequest {
+    bytes account_id = 1;
+    bytes character_id = 2;
+    repeated bytes item_ids = 3;
+    repeated bytes mount_ids = 4;
+    repeated bytes pet_ids = 5;
+}

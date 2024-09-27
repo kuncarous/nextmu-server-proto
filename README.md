@@ -1,2 +1,2 @@
 # nextmu-server-proto
-NextMU Server API Protobuf
+NextMU Server Service Protobuff

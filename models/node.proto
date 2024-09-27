@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+import "google/protobuf/empty.proto";
+package nextmu.node.v1;
+
+service Node {
+    rpc Heartbeat(NodeHeartbeatRequest) returns (google.protobuf.Empty);
+}
+
+message NodeHeartbeatRequest {
+    bytes node_id = 1;
+    string host = 2;
+    int32 port = 3;
+    int32 index = 4;
+    int32 group = 5;
+    int32 max_users = 6;
+    int32 users = 7;
+    bool pvp = 8;
+}

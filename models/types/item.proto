@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package nextmu.types.item.v1;
+
+enum ItemSlotType {
+    option allow_alias = true;
+    EQUIPMENT_WEAPON_RIGHT = 0;
+    EQUIPMENT_WEAPON_LEFT = 1;
+    EQUIPMENT_HELM = 2;
+    EQUIPMENT_ARMOR = 3;
+    EQUIPMENT_PANTS = 4;
+    EQUIPMENT_GLOVES = 5;
+    EQUIPMENT_BOOTS = 6;
+    EQUIPMENT_WING = 7;
+
+    MAX_EQUIPMENT_SKIN = 8;
+
+    EQUIPMENT_AMULET = 8;
+    EQUIPMENT_RING_RIGHT = 9;
+    EQUIPMENT_RING_LEFT = 10;
+
+    MAX_EQUIPMENT = 11;
+}
